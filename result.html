@@ -1,0 +1,220 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>図書館の詳細</title>
+  <style>
+   body {
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      color: #555;
+      background-color: #aaa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 40%;
+      display: block;
+  margin: 20px auto 0 auto; 
+      height: auto;
+      margin-top: 10px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #90a15e;
+      color: white;
+      text-decoration: none;
+      border: none;
+       border-radius: 999px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+     .common-button {
+      display: inline-block;
+      padding: 12px 20px;
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-size: 16px;
+      color: #555555;
+      background-color: transparent;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button-group .common-button {
+      flex: 1 1 0;
+      min-width: 100px;
+      max-width: 180px;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .button-group {
+  margin-top: 20px; /* ← 地図リンクとの間に余白を追加 */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+    .nav-button {
+      display: inline-block;
+      padding: 12px 20px;
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-size: 16px;
+      color: #555555;
+      background-color: transparent;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .common-button:hover {
+      background-color: #aaa;
+      color: #fff;
+    }
+
+    .map-link:hover {
+    background-color: #69821b;
+    }
+    
+    .nav-button:hover {
+      background-color: #aaa;
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="container">
+    <h1 id="title">図書館名</h1>
+    <p id="comment">図書館の紹介文がここに表示されます。</p>
+    <img id="image" src="" alt="図書館の写真">
+    <br>
+    <a id="map" class="map-link" target="_blank">地図を見る</a>
+    <br>
+    <div class="button-group">
+  <a href="chart.html" class="nav-button common-button">もういちどあそぶ</a>
+  <a href="index.html" class="nav-button common-button">トップに戻る</a>
+</div>
+  </div>
+
+  <script>
+  console.log("result.html の JavaScript が実行されました");
+</script>
+
+  <script>
+      const params = new URLSearchParams(window.location.search);
+  const result = params.get("result");
+  console.log("受け取った result パラメータ:", result);
+
+const libraryData = {
+  "中央区立 晴海図書館": {
+    comment: "不思議な柄のじゅうたんによって、<br>建物内なのに外にいるような感覚になる図書館です。<br>半個室の閲覧席も魅力的です",
+    image: "images/chuou-harumi.jpg",
+    map: "https://www.google.com/maps?q=中央区立+晴海図書館"
+  },
+  "荒川区立 尾久図書館": {
+        comment: "",
+        image: "images/ogu.jpg",
+        map: "https://www.google.com/maps?q=荒川区立+尾久図書館"
+      },
+      "いわき市立 いわき総合図書館": {
+        comment: "最新設備が整ったハイテク図書館。学習スペースも充実。",
+        image: "images/iwaki.jpg",
+        map: "https://www.google.com/maps?q=いわき市立+いわき総合図書館"
+      },
+      "那須塩原市立 中央図書館 みるる": {
+        comment: "自然と調和したデザインが魅力。静かで落ち着いた空間。",
+        image: "images/miruru.jpg",
+        map: "https://www.google.com/maps?q=那須塩原市立+中央図書館+みるる"
+      },
+      "目黒区立 目黒区民センター図書館": {
+        comment: "複雑な構造が迷路のようで楽しい。探検気分で本を探せる。",
+        image: "images/meguro.jpg",
+        map: "https://www.google.com/maps?q=目黒区立+目黒区民センター図書館"
+      },
+      "吹田市立 山田駅前図書館": {
+        comment: "駅近でアクセス抜群。ファンタジー系の蔵書も豊富。",
+        image: "images/yamada.jpg",
+        map: "https://www.google.com/maps?q=吹田市立+山田駅前図書館"
+      },
+      "佐久市立 浅科図書館": {
+        comment: "木の温もりを感じる静かな図書館。自然に囲まれた癒しの空間。",
+        image: "images/asashina.jpg",
+        map: "https://www.google.com/maps?q=佐久市立+浅科図書館"
+      },
+      "函館市中央図書館": {
+        comment: "レンガ造りの重厚な建物。歴史と文化が息づく空間",
+  image: "images/hakodate.jpg",
+  map: "https://www.google.com/maps?q=函館市中央図書館"
+}
+};
+
+if (libraryData[result]) {
+      const data = libraryData[result];
+      document.getElementById("title").textContent = result;
+      document.getElementById("comment").innerHTML = data.comment;
+
+      if (data.image) {
+        document.getElementById("image").src = data.image;
+        document.getElementById("image").style.display = "block";
+      } else {
+        document.getElementById("image").style.display = "none";
+      }
+
+      if (data.map) {
+        document.getElementById("map").href = data.map;
+        document.getElementById("map").style.display = "inline-block";
+      } else {
+        document.getElementById("map").style.display = "none";
+      }
+    } else {
+      document.getElementById("title").textContent = "図書館情報が見つかりません";
+      document.getElementById("comment").textContent = "指定された図書館の情報が登録されていません。";
+      document.getElementById("image").style.display = "none";
+      document.getElementById("map").style.display = "none";
+    }
+
+</script>
+</body>
+</html>

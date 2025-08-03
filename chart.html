@@ -1,0 +1,237 @@
+<!-- chart.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あなたにおすすめの図書館チャート</title>
+  <style>
+    body {
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      background-color: #aaa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .box {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    #questionText {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #444444;
+    }
+
+    #resultText {
+      font-size: 50px;
+      text-align: center;
+      color: #444444;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    .common-button-A {
+      display: inline-block;
+      padding: 12px 20px;
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-size: 16px;
+      color: #555555;
+      background-color: transparent;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+     .common-button-B {
+      display: inline-block;
+      padding: 12px 20px;
+      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-size: 16px;
+      color: #555555;
+      background-color: transparent;
+      text-align: center;
+      border: 3px solid #aaa;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+     }
+
+    .common-button-A:hover {
+      background-color: #aaa;
+      color: #fff;
+    }
+
+    .common-button-B:hover {
+      background-color: #aaa;
+      color: #fff;
+    }
+
+    .button-group-B {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .detail-button {
+        background-color: #90a15e;
+      color: white;
+      border: none;
+    }
+
+    .detail-button:hover {
+        background-color: #69821b;
+    }
+
+    .button-group-A .common-button-A {
+      flex: 1 1 0;
+      min-width: 100px;
+      max-width: 150px;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .button-group-B .common-button-B {
+      flex: 1 1 0;
+      min-width: 100px;
+      max-width: 180px;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .yes-button {
+        max-width: 150px;
+    }
+    
+    .no-button {
+        max-width: 150px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .box {
+        padding: 20px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 質問表示ボックス -->
+  <div class="box" id="questionBox">
+    <p id="questionText">ここに質問を入力</p>
+    <div class="button-group-A">
+      <button class="yes-button common-button-A" onclick="choose('yes')">はい</button>
+      <button class="no-button common-button-A" onclick="choose('no')">いいえ</button>
+    </div>
+  </div>
+
+  <!-- 結果表示ボックス -->
+  <div class="box hidden" id="resultBox">
+    <h2 id="resultText">ここに結果を入力</h2>
+    <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
+    <div class="button-group-B">
+      <button class="restart-button common-button-B" onclick="restart()">もういちどあそぶ</button>
+      <a href="index.html" class="top-button common-button-B">トップに戻る</a>
+    </div>
+  </div>
+
+  <script>
+    // chart.html
+
+    // 質問ツリー構造
+    const tree = {
+      question: "新しいものが好き",
+      yes: {
+        question: "他人の視線が気になるほうだ",
+        yes: {
+          question: "未知の世界に行きたい",
+          yes: { result: "中央区立 晴海図書館" },
+          no: { result: "荒川区立 尾久図書館" }
+        },
+        no: {
+          question: "ハイテクなものが好き",
+          yes: { result: "いわき市立 いわき総合図書館" },
+          no: { result: "那須塩原市立 中央図書館 みるる" }
+        }
+      },
+      no: {
+        question: "ファンタジーが好き",
+        yes: {
+          question: "迷路が好き",
+          yes: { result: "目黒区立 目黒区民センター図書館" },
+          no: { result: "吹田市立 山田駅前図書館" }
+        },
+        no: {
+          question: "木とレンガなら木のほうが好き",
+          yes: { result: "佐久市立 浅科図書館" },
+          no: { result: "函館市中央図書館" }
+        }
+      }
+    };
+
+    let currentNode = tree;
+
+    // 質問に答えるたびに分岐
+    function choose(answer) {
+      currentNode = currentNode[answer];
+      if (currentNode.result) {
+        showResult(currentNode.result);
+      } else {
+        document.getElementById("questionText").textContent = currentNode.question;
+      }
+    }
+
+    // 結果表示とリンク設定
+    function showResult(resultText) {
+      const encoded = encodeURIComponent(resultText);
+      document.getElementById("resultText").textContent = resultText;
+      document.getElementById("detailButton").href = `result.html?result=${encoded}`;
+      document.getElementById("questionBox").classList.add("hidden");
+      document.getElementById("resultBox").classList.remove("hidden");
+    }
+
+    // 最初からやり直す
+    function restart() {
+      currentNode = tree;
+      document.getElementById("questionText").textContent = currentNode.question;
+      document.getElementById("questionBox").classList.remove("hidden");
+      document.getElementById("resultBox").classList.add("hidden");
+    }
+
+    // 初期化
+    document.getElementById("questionText").textContent = tree.question;
+  </script>
+
+</body>
+</html>
