@@ -6,26 +6,33 @@
   <title>図書館チャートへようこそ</title>
   <style>
     body {
-  font-family: 'TestFont', sans-serif;
-  color: #555;
-  background-color: #aaa;
-  text-align: center;
-  display: flex;               /* ← 追加 */
-  justify-content: center;     /* ← 横方向中央 */
-  align-items: center;         /* ← 縦方向中央 */
-  min-height: 100vh;           /* ← 画面全体の高さを確保 */
-  margin: 0;                   /* ← 余白をリセット */
-  padding: 0;                  /* ← 余白をリセット */
+      font-family: 'TestFont', sans-serif;
+      color: #555;
+      background-color: #aaa;
+      text-align: center;
+      display: flex;               /* ← 追加 */
+      justify-content: center;     /* ← 横方向中央 */
+      align-items: center;         /* ← 縦方向中央 */
+      min-height: 100vh;           /* ← 画面全体の高さを確保 */
+      margin: 0;                   /* ← 余白をリセット */
+      padding: 0;                  /* ← 余白をリセット */
+    }
+
+    @font-face {
+      font-family: 'TestFont';
+      src: url('fonts/testfont.woff2') format('woff2'),
+           url('fonts/testfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @media (max-width: 600px) {
+  .fit-text {
+    font-size: clamp(10px, 4vw, 20px);
+  }
 }
 
-@font-face {
-  font-family: 'TestFont';
-  src: url('fonts/testfont.woff2') format('woff2'),
-       url('fonts/testfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 .fit-text {
   white-space: nowrap;       /* 改行禁止 */
@@ -106,7 +113,7 @@
 
   <div class="container">
     <p>
-      202508052250<br>
+      202508052256<br>
       全国250以上の図書館を巡ったわたしが、<br>
       あなたにぴったりの図書館を教えてあげます。<br>
       絶対に明日行ってみましょう。<br>
