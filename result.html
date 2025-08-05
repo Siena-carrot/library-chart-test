@@ -6,7 +6,7 @@
   <title>図書館の詳細</title>
   <style>
    body {
-      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-family: 'TestFont', sans-serif;
       color: #555;
       background-color: #aaa;
       display: flex;
@@ -19,10 +19,12 @@
     }
 
     @font-face {
-  font-family: '07ロゴたいぷゴシックCondense';
-  src: url('fonts/07LogoGothicCondense.woff2') format('woff2');
+  font-family: 'TestFont';
+  src: url('fonts/testfont.woff2') format('woff2'),
+       url('fonts/testfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {

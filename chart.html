@@ -7,7 +7,7 @@
   <title>あなたにおすすめの図書館チャート</title>
   <style>
     body {
-      font-family: '07ロゴたいぷゴシックCondense', sans-serif;
+      font-family: 'TestFont', sans-serif;
       background-color: #aaa;
       margin: 0;
       padding: 0;
@@ -18,10 +18,12 @@
     }
 
     @font-face {
-  font-family: '07ロゴたいぷゴシックCondense';
-  src: url('fonts/07LogoGothicCondense.woff2') format('woff2');
+  font-family: 'TestFont';
+  src: url('fonts/testfont.woff2') format('woff2'),
+       url('fonts/testfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
