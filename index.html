@@ -28,21 +28,31 @@
 }
 
     .container {
-      max-width: 600px;
       margin: auto;
       background-color: #fff;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: fit-content;
+  max-width: 100%;
+
     }
     h1 {
       font-size: 28px;
       margin-bottom: 20px;
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
+
     p {
       font-size: 18px;
       line-height: 1.6;
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
+
     button {
       margin-top: 30px;
       padding: 12px 24px;
@@ -52,7 +62,11 @@
       border: none;
        border-radius: 999px;
       cursor: pointer;
+      white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
     }
+
     button:hover {
       background-color: #69821b;
     }
