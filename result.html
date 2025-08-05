@@ -28,6 +28,13 @@
   font-display: swap;
 }
 
+.fit-text {
+      white-space: nowrap;       /* 改行禁止 */
+      overflow: hidden;          /* はみ出し防止 */
+      display: inline-block;
+      width: 100%;               /* 親要素に合わせる */
+    }
+
     .container {
       width: fit-content;
   max-width: 100%;
@@ -160,10 +167,7 @@
   </div>
 
   <script>
-  console.log("result.html の JavaScript が実行されました");
-</script>
 
-  <script>
       const params = new URLSearchParams(window.location.search);
   const result = params.get("result");
   console.log("受け取った result パラメータ:", result);
@@ -234,6 +238,24 @@ if (libraryData[result]) {
       document.getElementById("image").style.display = "none";
       document.getElementById("map").style.display = "none";
     }
+
+    function fitText(el, minSize = 10, maxSize = 40) {
+  const parentWidth = el.parentElement.offsetWidth;
+  let fontSize = maxSize;
+
+  el.style.fontSize = fontSize + 'px';
+
+  while (el.scrollWidth > parentWidth && fontSize > minSize) {
+    fontSize -= 1;
+    el.style.fontSize = fontSize + 'px';
+  }
+}
+
+// 実行
+const target = document.querySelector('.fit-text');
+fitText(target);
+
+window.addEventListener('resize', () => fitText(target));
 
 </script>
 </body>
