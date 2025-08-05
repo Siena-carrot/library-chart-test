@@ -26,6 +26,13 @@
   font-display: swap;
 }
 
+.fit-text {
+  white-space: nowrap;       /* 改行禁止 */
+  overflow: hidden;          /* はみ出し防止 */
+  display: inline-block;
+  width: 100%;               /* 親要素に合わせる */
+}
+
     .container {
       margin: auto;
       background-color: #fff;
@@ -106,5 +113,24 @@
     <button onclick="location.href='chart.html'">はじめる</button>
   </div>
 
+  <script>
+    function fitText(el, minSize = 10, maxSize = 40) {
+  const parentWidth = el.parentElement.offsetWidth;
+  let fontSize = maxSize;
+
+  el.style.fontSize = fontSize + 'px';
+
+  while (el.scrollWidth > parentWidth && fontSize > minSize) {
+    fontSize -= 1;
+    el.style.fontSize = fontSize + 'px';
+  }
+}
+
+// 実行
+const target = document.querySelector('.fit-text');
+fitText(target);
+
+window.addEventListener('resize', () => fitText(target));
+  </script>
 </body>
 </html>
