@@ -28,7 +28,7 @@
       font-display: swap;
     }
 
-.fit-text {
+    .fit-text {
       white-space: nowrap;       /* 改行禁止 */
       overflow: hidden;          /* はみ出し防止 */
       display: inline-block;
@@ -37,7 +37,7 @@
 
     .container {
       width: fit-content;
-  max-width: 100%;
+      max-width: 100%;
       background-color: #fff;
       padding: 30px;
       border-radius: 10px;
@@ -167,12 +167,12 @@
 
   <script>
 
-      const params = new URLSearchParams(window.location.search);
-  const result = params.get("result");
-  console.log("受け取った result パラメータ:", result);
+    const params = new URLSearchParams(window.location.search);
+    const result = params.get("result");
+    console.log("受け取った result パラメータ:", result);
 
-const libraryData = {
-  "中央区立 晴海図書館": {
+    const libraryData = {
+      "中央区立 晴海図書館": {
     comment: "不思議な柄のじゅうたんによって、<br>建物内なのに外にいるような感覚になる図書館です。<br>半個室の閲覧席も魅力的です",
     image: "images/中央区立晴海図書館.jpg",
     map: "https://www.google.com/maps?q=中央区立+晴海図書館"
