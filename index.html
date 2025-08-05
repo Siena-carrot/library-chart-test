@@ -87,6 +87,12 @@
       word-break: break-word;      /* ← 長い単語で改行可能 */
     }
 
+    .note {
+      font-size: 0.75em; /* 親の85%サイズ */
+      opacity: 0.8;      /* 少し控えめな印象に */
+    }
+
+
     button {
       margin-top: 30px;
       padding: 12px 24px;
@@ -122,11 +128,11 @@
 <body>
   <div class="container">
     <p class="fit-text">
-      2025080522310
+      2025080522313
       全国250以上の図書館を巡ったわたしが、
       あなたにぴったりの図書館を教えてあげます。
       絶対に明日行ってみましょう。
-      （休館だった場合はあさってでも大丈夫。事前に調べてね）
+      <span class="note">（休館だった場合はあさってでも大丈夫。事前に調べてね）</span>
     </p>
     <button onclick="location.href='chart.html'">はじめる</button>
   </div>
