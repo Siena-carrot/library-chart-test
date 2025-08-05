@@ -28,18 +28,18 @@
     }
 
     @media (max-width: 600px) {
-  .fit-text {
-    font-size: clamp(10px, 4vw, 20px);
-  }
-}
+      .fit-text {
+        font-size: clamp(10px, 4vw, 20px);
+      }
+    }
 
 
-.fit-text {
-  white-space: nowrap;       /* 改行禁止 */
-  overflow: hidden;          /* はみ出し防止 */
-  display: inline-block;
-  width: 100%;               /* 親要素に合わせる */
-}
+    .fit-text {
+      white-space: nowrap;       /* 改行禁止 */
+      overflow: hidden;          /* はみ出し防止 */
+      display: inline-block;
+      width: 100%;               /* 親要素に合わせる */
+    }
 
     .container {
       margin: auto;
@@ -48,24 +48,24 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: fit-content;
-  max-width: 100%;
-
+      max-width: 100%;
     }
+
     h1 {
       font-size: 28px;
       margin-bottom: 20px;
       white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     p {
       font-size: 18px;
       line-height: 1.6;
       white-space: normal;         /* ← 改行を許可 */
-  overflow: visible;           /* ← はみ出しを許可 */
-  text-overflow: unset;        /* ← 省略記号を無効化 */
-  word-break: break-word;      /* ← 長い単語で改行可能 */
+      overflow: visible;           /* ← はみ出しを許可 */
+      text-overflow: unset;        /* ← 省略記号を無効化 */
+      word-break: break-word;      /* ← 長い単語で改行可能 */
     }
 
     button {
@@ -78,8 +78,8 @@
        border-radius: 999px;
       cursor: pointer;
       white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     button:hover {
@@ -107,13 +107,24 @@
   }
 }
 
+/*デバッグ用*/
+.fit-text {
+  background: rgba(255, 0, 0, 0.1); /* 背景で幅を視覚化 */
+  border: 1px dashed red;           /* 枠線で領域を確認 */
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+
   </style>
 </head>
 <body>
 
   <div class="container">
     <p>
-      202508052256<br>
+      2025080522301<br>
       全国250以上の図書館を巡ったわたしが、<br>
       あなたにぴったりの図書館を教えてあげます。<br>
       絶対に明日行ってみましょう。<br>
