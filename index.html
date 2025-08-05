@@ -31,6 +31,25 @@
       .fit-text {
         font-size: clamp(10px, 4vw, 20px);
       }
+
+      .container {
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
     }
 
 
@@ -86,36 +105,15 @@
       background-color: #69821b;
     }
 
-    @media (max-width: 600px) {
-  .container {
-    padding: 20px;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  h1 {
-    font-size: 22px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-}
-
 /*デバッグ用*/
-.fit-text {
-  background: rgba(255, 0, 0, 0.1); /* 背景で幅を視覚化 */
-  border: 1px dashed red;           /* 枠線で領域を確認 */
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-  width: 100%;
-}
+    .fit-text {
+      background: rgba(255, 0, 0, 0.1); /* 背景で幅を視覚化 */
+      border: 1px dashed red;           /* 枠線で領域を確認 */
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+    }
 
 
   </style>
