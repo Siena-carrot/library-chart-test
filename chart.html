@@ -70,6 +70,10 @@
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s, color 0.3s;
+      white-space: nowrap;       /* 改行禁止 */
+  overflow: hidden;          /* はみ出し防止 */
+  text-overflow: clip;       /* ← ellipsis を無効化 */
+  max-width: 100%;
     }
 
      .common-button-B {
@@ -85,6 +89,10 @@
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s, color 0.3s;
+      white-space: nowrap;       /* 改行禁止 */
+  overflow: hidden;          /* はみ出し防止 */
+  text-overflow: clip;       /* ← ellipsis を無効化 */
+  max-width: 100%;
      }
 
     .common-button-A:hover {
@@ -245,6 +253,13 @@
 
     // 初期化
     document.getElementById("questionText").textContent = tree.question;
+
+    const targets = document.querySelectorAll('.fit-text');
+targets.forEach(el => fitText(el));
+
+window.addEventListener('resize', () => {
+  targets.forEach(el => fitText(el));
+});
   </script>
 
 </body>
