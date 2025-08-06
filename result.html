@@ -153,15 +153,15 @@
 </head>
 <body>
     <div class="container">
-    <h1 id="title">図書館名</h1>
+    <h1 id="title" class="fit-text">図書館名</h1>
     <p id="comment">図書館の紹介文がここに表示されます。</p>
     <img id="image" src="" alt="図書館の写真">
     <br>
     <a id="map" class="map-link" target="_blank">地図を見る</a>
     <br>
     <div class="button-group">
-  <a href="chart.html" class="nav-button common-button">もういちどあそぶ</a>
-  <a href="index.html" class="nav-button common-button">トップに戻る</a>
+  <a href="chart.html" class="nav-button common-button fit-text">もういちどあそぶ</a>
+  <a href="index.html" class="nav-button common-button fit-text">トップに戻る</a>
 </div>
   </div>
 
@@ -243,6 +243,7 @@ if (libraryData[result]) {
   let fontSize = maxSize;
 
   el.style.fontSize = fontSize + 'px';
+  el.style.whiteSpace = 'nowrap';
 
   while (el.scrollWidth > parentWidth && fontSize > minSize) {
     fontSize -= 1;
@@ -250,12 +251,14 @@ if (libraryData[result]) {
   }
 }
 
-// 実行
-const target = document.querySelector('.fit-text');
-fitText(target);
+// 実行：すべての .fit-text 要素に適用
+const targets = document.querySelectorAll('.fit-text');
+targets.forEach(el => fitText(el));
 
-window.addEventListener('resize', () => fitText(target));
-
+// リサイズ時にも再適用
+window.addEventListener('resize', () => {
+  targets.forEach(el => fitText(el));
+});
 </script>
 </body>
 </html>
