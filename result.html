@@ -101,6 +101,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 140px;
+  max-width: 180px;
+
     }
 
     .button-group .common-button {
@@ -238,10 +241,13 @@ if (libraryData[result]) {
       document.getElementById("map").style.display = "none";
     }
 
-    function fitText(el, minSize = 10, maxSize = 40) {
-  const parentWidth = el.parentElement.offsetWidth;
-  let fontSize = maxSize;
+ function fitText(el, minSize = 10, maxSize = 40) {
+  const parent = el.parentElement;
+  const parentStyle = window.getComputedStyle(parent);
+  const parentPadding = parseFloat(parentStyle.paddingLeft) + parseFloat(parentStyle.paddingRight);
+  const parentWidth = parent.clientWidth - parentPadding;
 
+  let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
