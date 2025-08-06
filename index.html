@@ -46,9 +46,6 @@
         font-size: 16px;
       }
 
-      p.fit-text {
-        font-size: clamp(6px, 4vw, 10px);
-      }
 
       button {
         font-size: 16px;
@@ -91,6 +88,10 @@
       word-break: break-word;      /* ← 長い単語で改行可能 */
     }
 
+    p.fit-text {
+        font-size: clamp(6px, 4vw, 10px);
+      }
+
     .note {
       font-size: 0.75em; /* 親の85%サイズ */
       opacity: 0.8;      /* 少し控えめな印象に */
@@ -115,13 +116,18 @@
       background-color: #69821b;
     }
 
+    .text-center span{
+      display:inline-block;
+      white-space:nowrap;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="container">
     <p class="fit-text">
-      2025080622222
+      2025080622226
       全国250以上の図書館を巡ったわたしが、
       あなたにぴったりの図書館を教えてあげます。
       絶対に明日行ってみましょう。
