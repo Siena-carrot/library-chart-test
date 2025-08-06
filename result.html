@@ -87,7 +87,7 @@
 
      .common-button {
       display: inline-block;
-      padding: 12px 20px;
+      padding: 10px 16px;
       font-family: 'TestFont', sans-serif;
       font-size: 16px;
       color: #555555;
@@ -102,7 +102,8 @@
       overflow: hidden;
       text-overflow: clip;
       min-width: 140px;
-  max-width: 100%;
+  max-width: 180px;
+  width: auto;
 
     }
 
@@ -242,16 +243,13 @@ if (libraryData[result]) {
     }
 
  function fitText(el, minSize = 10, maxSize = 40) {
-  const parent = el.parentElement;
-  const parentStyle = window.getComputedStyle(parent);
-  const parentPadding = parseFloat(parentStyle.paddingLeft) + parseFloat(parentStyle.paddingRight);
-  const parentWidth = parent.clientWidth - parentPadding;
+  const availableWidth = el.clientWidth;
 
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
-  while (el.scrollWidth > parentWidth && fontSize > minSize) {
+  while (el.scrollWidth > availableWidth && fontSize > minSize) {
     fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
   }
