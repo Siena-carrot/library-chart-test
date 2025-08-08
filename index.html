@@ -27,6 +27,21 @@
       font-display: swap;
     }
 
+    @media (min-width: 601px) {
+  .fit-text {
+    font-size: 28px;       /* ← PCでは大きめに固定 */
+    line-height: 1.8;      /* ← ゆったりした行間で読みやすく */
+    white-space: normal;   /* ← 改行許可 */
+    word-break: break-word;
+  }
+
+  .container {
+    max-width: 800px;      /* ← 横幅を広げて余裕を持たせる */
+    padding: 40px;
+  }
+}
+
+
     @media (max-width: 600px) {
       .fit-text {
         font-size: clamp(6px, 4vw, 10px);
@@ -153,6 +168,13 @@ const target = document.querySelector('.fit-text');
 fitText(target);
 
 window.addEventListener('resize', () => fitText(target));
+
+if (window.innerWidth <= 600) {
+  const target = document.querySelector('.fit-text');
+  fitText(target);
+  window.addEventListener('resize', () => fitText(target));
+}
+
   </script>
 </body>
 </html>
