@@ -276,7 +276,6 @@ if (libraryData[result]) {
 
  function fitText(el, minSize = 14, maxSize = 40) {
   const availableWidth = el.clientWidth;
-
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
@@ -285,16 +284,32 @@ if (libraryData[result]) {
     fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
   }
+
+  return fontSize;
 }
 
-// 実行：すべての .fit-text 要素に適用
-const targets = document.querySelectorAll('.fit-text');
-targets.forEach(el => fitText(el));
+// すべての .fit-text 要素に適用し、最小サイズを記録
+function applyUnifiedFitText() {
+  const targets = document.querySelectorAll('.fit-text');
+  let smallestSize = Infinity;
+
+  targets.forEach(el => {
+    const size = fitText(el);
+    if (size < smallestSize) smallestSize = size;
+  });
+
+  // 最小サイズで統一
+  targets.forEach(el => {
+    el.style.fontSize = smallestSize + 'px';
+  });
+}
+
+// 初回実行
+applyUnifiedFitText();
 
 // リサイズ時にも再適用
-window.addEventListener('resize', () => {
-  targets.forEach(el => fitText(el));
-});
+window.addEventListener('resize', applyUnifiedFitText)
+
 </script>
 </body>
 </html>
