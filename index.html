@@ -163,17 +163,17 @@
   }
 }
 
-// 実行
-const target = document.querySelector('.fit-text');
-fitText(target);
-
-window.addEventListener('resize', () => fitText(target));
-
-if (window.innerWidth <= 600) {
+// PCのみ実行（601px以上）
+if (window.innerWidth > 600) {
   const target = document.querySelector('.fit-text');
   fitText(target);
   window.addEventListener('resize', () => fitText(target));
 }
+
+
+// 実行
+const target = document.querySelector('.fit-text');
+fitText(target);
 
   </script>
 </body>
