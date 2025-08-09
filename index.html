@@ -18,6 +18,25 @@
       padding: 0;                  /* ← 余白をリセット */
     }
 
+    #splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #69821b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#splash img {
+  max-width: 60%;
+  height: auto;
+}
+
+
     @font-face {
       font-family: 'TestFont';
       src: url('fonts/testfont.woff2') format('woff2'),
@@ -140,6 +159,11 @@
 </head>
 
 <body>
+   <div id="splash">
+    <img src="index-images/index-images1.png" alt="ローディング画像">
+  </div>
+
+  <div id="main-content" style="display: none;">
   <div class="container">
     <p class="fit-text text-center">
       <span>全国250以上の</span><span>図書館を</span><span>巡ったわたしが、</span>
@@ -149,8 +173,21 @@
       <p class="note">（休館だった場合はあさってでも大丈夫。事前に調べてね）</p>
     <button onclick="location.href='chart.html'">はじめる</button>
   </div>
+   </div>
 
   <script>
+    window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+  const main = document.getElementById("main-content");
+
+  // 画像が表示されたあとにフェードアウト（例：1秒後）
+  setTimeout(() => {
+    splash.style.display = "none";
+    main.style.display = "block";
+  }, 1000); // ← 表示時間（ミリ秒）を調整可能
+});
+
+
     function fitText(el, minSize = 10, maxSize = 40) {
   const parentWidth = el.parentElement.offsetWidth;
   let fontSize = maxSize;
