@@ -26,6 +26,13 @@
   font-display: swap;
 }
 
+.fit-text {
+      white-space: nowrap;       /* 改行禁止 */
+      overflow: hidden;          /* はみ出し防止 */
+      display: inline-block;
+      width: 100%;               /* 親要素に合わせる */
+    }
+
 .container {
   width: fit-content;
   max-width: 100%;
