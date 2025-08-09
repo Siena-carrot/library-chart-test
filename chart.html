@@ -382,6 +382,9 @@ if (result) fitText(result, 20, 40);
   }
 
   document.addEventListener("DOMContentLoaded", () => {
+    const questionEl = document.getElementById("questionText");
+  questionEl.textContent = tree.question;
+  fitText(questionEl, 18, 30);
     document.getElementById("questionText").textContent = tree.question;
     document.getElementById("questionBox").classList.remove("hidden");
     document.getElementById("resultBox").classList.add("hidden");
