@@ -68,7 +68,7 @@
     }
 
    
-    .common-button-A {
+    .common-button {
       display: inline-block;
       padding: 12px 20px;
       font-family: 'TestFont', sans-serif;
@@ -87,60 +87,16 @@
       max-width: 100%;
     }
 
-    .common-button-A:hover {
+    .common-button:hover {
       background-color: #aaa;
       color: #fff;
     }
 
-    .common-button-B {
-      font-family: 'TestFont', sans-serif;
-      font-size: 18px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      background-color: #aaa;
-      color: #fff;
-      transition: background-color 0.3s, color 0.3s;
-      width: auto;
-      text-decoration: none;
-    }
-
-    .common-button-B:hover {
-      background-color: #888;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .button-group-A {
+    .button-group {
       display: flex;
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
-    }
-
-    .button-group-B {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .detail-button {
-      background-color: #90a15e;
-      color: white;
-      border: none;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 30px;
-    }
-
-    .detail-button:hover {
-      background-color: #69821b;
-      text-decoration: none;
-    }
-
-    .hidden {
-      display: none !important;
     }
 
     @media (max-width: 600px) {
@@ -152,34 +108,6 @@
         font-size: 14px;
         padding: 10px;
       }
-
-
-      .common-button-B {
-        font-size: 14px;
-        padding: 10px 16px;
-      }
-
-      .button-group-B {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-        width: 100%;
-        max-width: 280px;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        margin: 0 auto;
-      }
-
-      .button-group-B .common-button-B {
-        width: 100%;
-        max-width: 240px;
-        padding: 8px 16px;
-        min-height: 40px;
-        font-size: 12px;
-        line-height: 1.4;
-        margin: 0 auto;
-      }
     }
   </style>
 </head>
@@ -187,9 +115,9 @@
 
   <div class="box" id="questionBox">
     <p id="questionText">ここに質問を入力</p>
-    <div class="button-group-A">
-      <button class="yes-button common-button-A" onclick="choose('yes')">はい</button>
-      <button class="no-button common-button-A" onclick="choose('no')">いいえ</button>
+    <div class="button-group">
+      <button class="yes-button common-button" onclick="choose('yes')">はい</button>
+      <button class="no-button common-button" onclick="choose('no')">いいえ</button>
     </div>
   </div>
 
@@ -242,44 +170,10 @@
   }
 }
 
-function fitText(el, minSize = 14, maxSize = 40) {
-  const availableWidth = el.clientWidth;
-  let fontSize = maxSize;
-  el.style.fontSize = fontSize + 'px';
-  el.style.whiteSpace = 'nowrap';
-
-  while (el.scrollWidth > availableWidth && fontSize > minSize) {
-    fontSize -= 1;
-    el.style.fontSize = fontSize + 'px';
-  }
-
-  return fontSize;
-}
-
-
 function showResult(resultText) {
   const encoded = encodeURIComponent(resultText);
   location.href = `result.html?result=${encoded}`;
 }
-
-
-
-function restart() {
-  currentNode = tree;
-  const questionEl = document.getElementById("questionText");
-  questionEl.textContent = currentNode.question;
-
-  document.getElementById("questionBox").classList.remove("hidden");
-  document.getElementById("resultBox").classList.add("hidden");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const questionEl = document.getElementById("questionText");
-  questionEl.textContent = tree.question;
-
-  document.getElementById("questionBox").classList.remove("hidden");
-  document.getElementById("resultBox").classList.add("hidden");
-});
 
 
 </script>
