@@ -60,6 +60,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   box-sizing: border-box;
   text-align: center;
+  position: relative;
 }
 
 
@@ -76,6 +77,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   box-sizing: border-box;
   text-align: center;
+  position: relative;
 }
 
     #questionText {
@@ -86,6 +88,8 @@
       max-width: 100%;
   max-height: 100%;
   overflow: hidden;
+  white-space: nowrap;
+  display: block;
     }
 
     #resultText {
@@ -98,6 +102,8 @@
       max-width: 100%;
   max-height: 100%;
   overflow: hidden;
+  display: block;
+
     }
 
     .common-button-A {
@@ -339,6 +345,10 @@
 
     const question = document.getElementById('questionText');
   if (question) fitText(question, 18, 30);
+
+  const result = document.getElementById('resultText');
+if (result) fitText(result, 20, 40);
+
   }
 
   function showResult(resultText) {
