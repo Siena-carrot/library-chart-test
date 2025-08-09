@@ -179,6 +179,12 @@ function showResult(resultText) {
   location.href = `result.html?result=${encoded}`;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const questionEl = document.getElementById("questionText");
+    questionEl.textContent = currentNode.question;
+  });
+
+
 
 </script>
 </body>
