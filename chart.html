@@ -208,7 +208,7 @@
 
   <!-- 結果表示ボックス -->
   <div class="box hidden" id="resultBox">
-    <h2 id="resultText">ここに結果を入力</h2>
+    <h2 id="resultText" class="fit-title">ここに結果を入力</h2>
     <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
     <div class="button-group-B">
       <button class="restart-button common-button-B fit-button">もういちどあそぶ</button>
@@ -289,7 +289,7 @@ window.addEventListener('resize', () => {
   targets.forEach(el => fitText(el));
 });
 
-function fitText(el, minSize = 14, maxSize = 20) {
+ function fitText(el, minSize = 14, maxSize = 20) {
   const availableWidth = el.clientWidth;
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
@@ -303,6 +303,7 @@ function fitText(el, minSize = 14, maxSize = 20) {
   return fontSize;
 }
 
+// .fit-button 要素に最小サイズを統一して適用
 function applyUnifiedFitText() {
   const targets = document.querySelectorAll('.fit-button');
   let smallestSize = Infinity;
@@ -317,7 +318,20 @@ function applyUnifiedFitText() {
   });
 }
 
+// タイトルだけ個別に調整（必要なら）
+const title = document.querySelector('.fit-title');
+if (title) fitText(title, 20, 40); // ← タイトルは大きめに保つ
+
 applyUnifiedFitText();
+window.addEventListener('resize', () => {
+  if (title) fitText(title, 20, 40);
+  applyUnifiedFitText();
+});
+
+// 初回実行
+applyUnifiedFitText();
+
+// リサイズ時にも再適用
 window.addEventListener('resize', applyUnifiedFitText);
   </script>
 
