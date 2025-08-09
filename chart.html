@@ -272,7 +272,7 @@
 
   <script>
   const tree = {
-    question: "新しいものが好き",
+    question: "新しいものが好きaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     yes: {
       question: "他人の視線が気になるほうだ",
       yes: {
@@ -366,7 +366,7 @@ if (result) fitText(result, 20, 40);
     fitText(resultEl, 20, 40);
   }
 
-document.addEventListener("DOMContentLoaded", () => {
+
 
     document.getElementById("detailButton").href = `result.html?result=${encoded}`;
     document.getElementById("questionBox").classList.add("hidden");
@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       fitText(resultEl, 20, 40);
     }, 50);
-  });
+
 
   function restart() {
     currentNode = tree;
@@ -388,7 +388,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("questionText").textContent = tree.question;
     document.getElementById("questionBox").classList.remove("hidden");
     document.getElementById("resultBox").classList.add("hidden");
+    setTimeout(() => {
     applyUnifiedFitText();
+  }, 50);
+
   });
 
   window.addEventListener('resize', applyUnifiedFitText);
