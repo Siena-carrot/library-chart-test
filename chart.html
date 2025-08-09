@@ -321,26 +321,31 @@
 }
 
   function fitText(el, minSize = 14, maxSize = 60, container = null) {
-    if (!el || !el.offsetParent) return minSize;
+  if (!el || !el.offsetParent) return minSize;
 
-    let fontSize = maxSize;
+  const parent = container || el.offsetParent;
+  const maxWidth = parent.clientWidth;
+  const maxHeight = parent.clientHeight;
+
+  let fontSize = maxSize;
+  el.style.fontSize = fontSize + 'px';
+  el.style.whiteSpace = 'nowrap';
+
+  // 強制的に再描画を待つ
+  el.offsetWidth; // ← reflow
+
+  while (
+    (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
+    fontSize > minSize
+  ) {
+    fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
-    el.style.whiteSpace = 'nowrap';
-
-    const parent = container || el.offsetParent;
-    const maxWidth = parent.clientWidth;
-    const maxHeight = parent.clientHeight;
-
-    while (
-      (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
-      fontSize > minSize
-    ) {
-      fontSize -= 1;
-      el.style.fontSize = fontSize + 'px';
-    }
-
-    return fontSize;
+    el.offsetWidth; // ← reflow
   }
+   return fontSize;
+}
+
+
 
   function applyUnifiedFitText() {
     const buttons = document.querySelectorAll('.fit-button');
