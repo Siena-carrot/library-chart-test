@@ -271,34 +271,7 @@
       }
     }
 
-    // 結果表示とリンク設定
-    function showResult(resultText) {
-      const encoded = encodeURIComponent(resultText);
-      document.getElementById("resultText").textContent = resultText;
-      document.getElementById("detailButton").href = `result.html?result=${encoded}`;
-      document.getElementById("questionBox").classList.add("hidden");
-      document.getElementById("resultBox").classList.remove("hidden");
-    }
-
-    // 最初からやり直す
-    function restart() {
-      currentNode = tree;
-      document.getElementById("questionText").textContent = currentNode.question;
-      document.getElementById("questionBox").classList.remove("hidden");
-      document.getElementById("resultBox").classList.add("hidden");
-    }
-
-    // 初期化
-    document.getElementById("questionText").textContent = tree.question;
-
-    const targets = document.querySelectorAll('.fit-text');
-targets.forEach(el => fitText(el));
-
-window.addEventListener('resize', () => {
-  targets.forEach(el => fitText(el));
-});
-
- function fitText(el, minSize = 14, maxSize = 20) {
+    function fitText(el, minSize = 14, maxSize = 20) {
   const availableWidth = el.clientWidth;
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
@@ -336,6 +309,39 @@ window.addEventListener('resize', () => {
   if (title) fitText(title, 20, 40);
   applyUnifiedFitText();
 });
+
+    // 結果表示とリンク設定
+    function showResult(resultText) {
+      const encoded = encodeURIComponent(resultText);
+      document.getElementById("resultText").textContent = resultText;
+      document.getElementById("detailButton").href = `result.html?result=${encoded}`;
+      document.getElementById("questionBox").classList.add("hidden");
+      document.getElementById("resultBox").classList.remove("hidden");
+
+      const title = document.querySelector('.fit-title');
+  if (title) fitText(title, 20, 40);
+
+    }
+
+    // 最初からやり直す
+    function restart() {
+      currentNode = tree;
+      document.getElementById("questionText").textContent = currentNode.question;
+      document.getElementById("questionBox").classList.remove("hidden");
+      document.getElementById("resultBox").classList.add("hidden");
+    }
+
+    // 初期化
+    document.getElementById("questionText").textContent = tree.question;
+
+    const targets = document.querySelectorAll('.fit-text');
+targets.forEach(el => fitText(el));
+
+window.addEventListener('resize', () => {
+  targets.forEach(el => fitText(el));
+});
+
+ 
 
 // 初回実行
 applyUnifiedFitText();
