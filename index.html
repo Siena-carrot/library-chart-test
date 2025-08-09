@@ -158,6 +158,22 @@
     }
 
   </style>
+
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('splash');
+
+    // result.html から戻ってきた場合は sessionStorage にフラグがある
+    if (sessionStorage.getItem('visited')) {
+      splash.style.display = 'none';
+    } else {
+      // 初回アクセス時はスプラッシュを表示し、フラグを立てる
+      sessionStorage.setItem('visited', 'true');
+      splash.style.display = 'flex'; // もしくはそのまま表示
+    }
+  });
+</script>
+
 </head>
 
 <body>
