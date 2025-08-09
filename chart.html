@@ -328,7 +328,7 @@
     el.style.whiteSpace = 'nowrap';
 
     const parent = container || el.offsetParent;
-    const maxWidth = el.offsetParent.clientWidth;
+    const maxWidth = parent.clientWidth;
     const maxHeight = el.offsetParent.clientHeight;
 
     while (
