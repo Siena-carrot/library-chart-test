@@ -180,12 +180,21 @@
   const splash = document.getElementById("splash");
   const main = document.getElementById("main-content");
 
-  // 画像が表示されたあとにフェードアウト（例：1秒後）
   setTimeout(() => {
     splash.style.display = "none";
     main.style.display = "block";
-  }, 1000); // ← 表示時間（ミリ秒）を調整可能
+
+    // fitText をローディング後に実行
+    const target = document.querySelector('.fit-text');
+    if (target) fitText(target);
+  }, 1500);
 });
+
+window.addEventListener("resize", () => {
+  const target = document.querySelector('.fit-text');
+  if (target) fitText(target);
+});
+
 
 
     function fitText(el, minSize = 10, maxSize = 40) {
