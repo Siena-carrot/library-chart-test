@@ -1,4 +1,3 @@
-<!-- chart.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,85 +17,69 @@
     }
 
     @font-face {
-  font-family: 'TestFont';
-  src: url('fonts/testfont.woff2') format('woff2'),
-       url('fonts/testfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.fit-text {
-      white-space: nowrap;       /* 改行禁止 */
-      overflow: hidden;          /* はみ出し防止 */
-      display: inline-block;
-      width: 100%;               /* 親要素に合わせる */
+      font-family: 'TestFont';
+      src: url('fonts/testfont.woff2') format('woff2'),
+           url('fonts/testfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
-.container {
-  width: fit-content;
-  max-width: 100%;
-}
-
     .box {
-     background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  margin: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     #questionBox {
-  width: 500px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
-  flex-shrink: 0; 
-  overflow: hidden; 
-}
-
+      width: 500px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
 
     #resultBox {
-  width: 600px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
-}
+      width: 600px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+    }
 
     #questionText {
       font-size: 30px;
       text-align: center;
       margin-bottom: 20px;
       color: #555;
-  height: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
       max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  display: block;
-   text-overflow: clip;
-   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
     }
 
     #resultText {
@@ -105,12 +88,11 @@
       color: #555;
       margin-top: 40px;
       margin-bottom: 30px;
-      white-space: nowrap;       /* ← 改行禁止 */
+      white-space: nowrap;
       max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  display: block;
-
+      max-height: 100%;
+      overflow: hidden;
+      display: block;
     }
 
     .common-button-A {
@@ -126,10 +108,10 @@
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.3s, color 0.3s;
-      white-space: nowrap;       /* 改行禁止 */
-  overflow: hidden;          /* はみ出し防止 */
-  text-overflow: clip;       /* ← ellipsis を無効化 */
-  max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+      max-width: 100%;
     }
 
     .common-button-A:hover {
@@ -137,22 +119,30 @@
       color: #fff;
     }
 
-     .common-button-B {
+    .common-button-B {
       font-family: 'TestFont', sans-serif;
-  font-size: 18px;
-  padding: 14px 24px;
-  border-radius: 999px;
-  background-color: #aaa;
-  color: #fff;
-  transition: background-color 0.3s, color 0.3s;
-  width: auto;
-  text-decoration: none;
-}
-.common-button-B:hover {
-  background-color: #888;
-  color: #fff;
-  text-decoration: none;
-}
+      font-size: 18px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background-color: #aaa;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+      width: auto;
+      text-decoration: none;
+    }
+
+    .common-button-B:hover {
+      background-color: #888;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .button-group-A {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
     .button-group-B {
       margin-top: 30px;
@@ -163,7 +153,7 @@
     }
 
     .detail-button {
-        background-color: #90a15e;
+      background-color: #90a15e;
       color: white;
       border: none;
       text-decoration: none;
@@ -172,41 +162,12 @@
     }
 
     .detail-button:hover {
-        background-color: #69821b;
-        text-decoration: none;
-    }
-
-    .button-group-A .common-button-A {
-      flex: 1 1 0;
-      min-width: 100px;
-      max-width: 150px;
-      padding: 12px 20px;
-      text-align: center;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .button-group-B .common-button-B {
-      flex: 1 1 0;
-      min-width: 100px;
-      max-width: 180px;
-      padding: 12px 20px;
-      text-align: center;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .yes-button {
-        max-width: 150px;
-    }
-    
-    .no-button {
-        max-width: 150px;
+      background-color: #69821b;
+      text-decoration: none;
     }
 
     .hidden {
       display: none !important;
-
     }
 
     @media (max-width: 600px) {
@@ -220,93 +181,91 @@
       }
 
       #resultText {
-    font-size: 40px;
-  }
-  .common-button-B {
-    font-size: 14px;
-    padding: 10px 16px;
-  }
+        font-size: 40px;
+      }
 
-  .button-group-B {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    width: 100%;
-    max-width: 280px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    margin: 0 auto;
-  }
+      .common-button-B {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
 
-  .button-group-B .common-button-B {
-    width: 100%;
-    max-width: 240px;
-    padding: 8px 16px;
-    min-height: 40px;
-    font-size: 12px;
-    line-height: 1.4;
-    margin: 0 auto;
-  }
-}
+      .button-group-B {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+        max-width: 280px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        margin: 0 auto;
+      }
 
+      .button-group-B .common-button-B {
+        width: 100%;
+        max-width: 240px;
+        padding: 8px 16px;
+        min-height: 40px;
+        font-size: 12px;
+        line-height: 1.4;
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- 質問表示ボックス -->
   <div class="box" id="questionBox">
-    <p id="questionText" class="fit-text">ここに質問を入力</p>
+    <p id="questionText">ここに質問を入力</p>
     <div class="button-group-A">
       <button class="yes-button common-button-A" onclick="choose('yes')">はい</button>
       <button class="no-button common-button-A" onclick="choose('no')">いいえ</button>
     </div>
   </div>
 
-  <!-- 結果表示ボックス -->
   <div class="box hidden" id="resultBox">
-    <h2 id="resultText" class="fit-title fit-text">ここに結果を入力</h2>
+    <h2 id="resultText">ここに結果を入力</h2>
     <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
     <div class="button-group-B">
-      <button class="restart-button common-button-B fit-button" onclick="restart()">もういちどあそぶ</button>
-      <a href="index.html" class="top-button common-button-B fit-button">トップに戻る</a>
+      <button class="restart-button common-button-B" onclick="restart()">もういちどあそぶ</button>
+      <a href="index.html" class="top-button common-button-B">トップに戻る</a>
     </div>
   </div>
 
- <script>
-const tree = {
-  question: "新しいものが好きaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  yes: {
-    question: "他人の視線が気になるほうだ",
-    yes: {
-      question: "未知の世界に行きたい",
-      yes: { result: "中央区立 晴海図書館" },
-      no: { result: "荒川区立 尾久図書館" }
-    },
-    no: {
-      question: "ハイテクなものが好き",
-      yes: { result: "いわき市立 いわき総合図書館" },
-      no: { result: "那須塩原市立 中央図書館 みるる" }
-    }
-  },
-  no: {
-    question: "ファンタジーが好き",
-    yes: {
-      question: "迷路が好き",
-      yes: { result: "目黒区立 目黒区民センター図書館" },
-      no: { result: "吹田市立 山田駅前図書館" }
-    },
-    no: {
-      question: "木とレンガなら木のほうが好き",
-      yes: { result: "佐久市立 浅科図書館" },
-      no: { result: "函館市中央図書館" }
-    }
-  }
-};
+  <script>
+    const tree = {
+      question: "新しいものが好き",
+      yes: {
+        question: "他人の視線が気になるほうだ",
+        yes: {
+          question: "未知の世界に行きたい",
+          yes: { result: "中央区立 晴海図書館" },
+          no: { result: "荒川区立 尾久図書館" }
+        },
+        no: {
+          question: "ハイテクなものが好き",
+          yes: { result: "いわき市立 いわき総合図書館" },
+          no: { result: "那須塩原市立 中央図書館 みるる" }
+        }
+      },
+      no: {
+        question: "ファンタジーが好き",
+        yes: {
+          question: "迷路が好き",
+          yes: { result: "目黒区立 目黒区民センター図書館" },
+          no: { result: "吹田市立 山田駅前図書館" }
+        },
+        no: {
+          question: "木とレンガなら木のほうが好き",
+          yes: { result: "佐久市立 浅科図書館" },
+          no: { result: "函館市中央図書館" }
+        }
+      }
+    };
 
-let currentNode = tree;
+    let currentNode = tree;
 
-function choose(answer) {
+    function choose(answer) {
   if (!currentNode || !currentNode[answer]) {
     console.warn("無効な分岐:", answer);
     return;
@@ -319,9 +278,6 @@ function choose(answer) {
     showResult(currentNode.result);
   } else {
     questionEl.textContent = currentNode.question;
-    requestAnimationFrame(() => {
-      fitText(questionEl, 18, 30, document.getElementById("questionBox"));
-    });
   }
 }
 
@@ -336,41 +292,15 @@ function fitText(el, minSize = 14, maxSize = 60, container = null) {
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
-  el.offsetWidth; // reflow
-
   while (
     (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
     fontSize > minSize
   ) {
     fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
-    el.offsetWidth; // reflow
   }
 
   return fontSize;
-}
-
-function applyUnifiedFitText() {
-  const buttons = document.querySelectorAll('.fit-button');
-  let smallestSize = Infinity;
-
-  buttons.forEach(el => {
-    const size = fitText(el);
-    if (size < smallestSize) smallestSize = size;
-  });
-
-  buttons.forEach(el => {
-    el.style.fontSize = smallestSize + 'px';
-  });
-
-  const title = document.querySelector('.fit-title');
-  if (title) fitText(title, 20, 40);
-
-  const question = document.getElementById('questionText');
-  if (question) fitText(question, 18, 30, document.getElementById("questionBox"));
-
-  const result = document.getElementById('resultText');
-  if (result) fitText(result, 20, 40, document.getElementById("resultBox"));
 }
 
 function showResult(resultText) {
@@ -392,10 +322,6 @@ function restart() {
   const questionEl = document.getElementById("questionText");
   questionEl.textContent = currentNode.question;
 
-  requestAnimationFrame(() => {
-    fitText(questionEl, 18, 30, document.getElementById("questionBox"));
-  });
-
   document.getElementById("questionBox").classList.remove("hidden");
   document.getElementById("resultBox").classList.add("hidden");
 }
@@ -404,19 +330,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionEl = document.getElementById("questionText");
   questionEl.textContent = tree.question;
 
-  requestAnimationFrame(() => {
-    fitText(questionEl, 18, 30, document.getElementById("questionBox"));
-  });
-
   document.getElementById("questionBox").classList.remove("hidden");
   document.getElementById("resultBox").classList.add("hidden");
-
-  setTimeout(() => {
-    applyUnifiedFitText();
-  }, 50);
 });
 
-window.addEventListener('resize', applyUnifiedFitText);
+window.addEventListener('resize', () => {
+  const resultEl = document.getElementById("resultText");
+  if (resultEl && !document.getElementById("resultBox").classList.contains("hidden")) {
+    fitText(resultEl, 20, 40, document.getElementById("resultBox"));
+  }
+});
 </script>
 </body>
 </html>
