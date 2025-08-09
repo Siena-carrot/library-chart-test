@@ -50,11 +50,11 @@
     }
 
     #resultText {
-      font-size: 50px;
+      font-size: 60px;
       text-align: center;
-      color: #444444;
-      margin-top: 50px;
-      margin-bottom: 20px;
+      color: #444;
+      margin-top: 40px;
+      margin-bottom: 30px;
     }
 
     .common-button-A {
@@ -76,34 +76,25 @@
   max-width: 100%;
     }
 
-     .common-button-B {
-      display: inline-block;
-      padding: 12px 20px;
-      font-family: 'TestFont', sans-serif;
-      font-size: 16px;
-      color: #aaa;
-      background-color: transparent;
-      text-align: center;
-      border: 3px solid #aaa;
-      border-radius: 999px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s, color 0.3s;
-      white-space: nowrap;       /* 改行禁止 */
-  overflow: hidden;          /* はみ出し防止 */
-  text-overflow: clip;       /* ← ellipsis を無効化 */
-  max-width: 100%;
-     }
-
     .common-button-A:hover {
       background-color: #aaa;
       color: #fff;
     }
 
-    .common-button-B:hover {
-      background-color: #aaa;
-      color: #fff;
-    }
+     .common-button-B {
+  font-size: 18px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 3px solid #aaa;
+  background-color: transparent;
+  color: #aaa;
+  transition: background-color 0.3s, color 0.3s;
+}
+.common-button-B:hover {
+  background-color: #aaa;
+  color: #fff;
+}
+
 
     .button-group-B {
       display: flex;
@@ -155,7 +146,7 @@
       display: none;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .box {
         padding: 20px;
       }
@@ -164,7 +155,16 @@
         font-size: 14px;
         padding: 10px;
       }
-    }
+
+      #resultText {
+    font-size: 40px;
+  }
+  .common-button-B {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
   </style>
 </head>
 <body>
