@@ -304,10 +304,14 @@
     let fontSize = maxSize;
     el.style.fontSize = fontSize + 'px';
 
-    while (el.scrollWidth > availableWidth && fontSize > minSize) {
-      fontSize -= 1;
-      el.style.fontSize = fontSize + 'px';
-    }
+    while (
+    (el.scrollWidth > parent.clientWidth || el.scrollHeight > parent.clientHeight) &&
+    fontSize > minSize
+  ) {
+    fontSize -= 1;
+    el.style.fontSize = fontSize + 'px';
+  }
+
 
     return fontSize;
   }
