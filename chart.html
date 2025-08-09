@@ -353,6 +353,10 @@ window.addEventListener('resize', () => {
   targets.forEach(el => fitText(el));
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("questionBox").classList.remove("hidden");
+  document.getElementById("resultBox").classList.add("hidden");
+});
  
 
 // 初回実行
