@@ -89,6 +89,7 @@
   background-color: transparent;
   color: #aaa;
   transition: background-color 0.3s, color 0.3s;
+  width: auto;
 }
 .common-button-B:hover {
   background-color: #aaa;
@@ -97,10 +98,10 @@
 
 
     .button-group-B {
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-top: 40px;
       flex-wrap: wrap;
     }
 
@@ -163,6 +164,28 @@
     font-size: 14px;
     padding: 10px 16px;
   }
+
+  .button-group-B {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 280px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin: 0 auto;
+  }
+
+  .button-group-B .common-button-B {
+    width: 100%;
+    max-width: 240px;
+    padding: 8px 16px;
+    min-height: 40px;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0 auto;
+  }
 }
 
   </style>
@@ -183,8 +206,8 @@
     <h2 id="resultText">ここに結果を入力</h2>
     <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
     <div class="button-group-B">
-      <button class="restart-button common-button-B" onclick="restart()">もういちどあそぶ</button>
-      <a href="index.html" class="top-button common-button-B">トップに戻る</a>
+      <button class="restart-button common-button-B fit-button" onclick="restart()">もういちどあそぶ</button>
+      <a href="index.html" class="top-button common-button-B fit-button">トップに戻る</a>
     </div>
   </div>
 
@@ -260,6 +283,37 @@ targets.forEach(el => fitText(el));
 window.addEventListener('resize', () => {
   targets.forEach(el => fitText(el));
 });
+
+function fitText(el, minSize = 14, maxSize = 20) {
+  const availableWidth = el.clientWidth;
+  let fontSize = maxSize;
+  el.style.fontSize = fontSize + 'px';
+  el.style.whiteSpace = 'nowrap';
+
+  while (el.scrollWidth > availableWidth && fontSize > minSize) {
+    fontSize -= 1;
+    el.style.fontSize = fontSize + 'px';
+  }
+
+  return fontSize;
+}
+
+function applyUnifiedFitText() {
+  const targets = document.querySelectorAll('.fit-button');
+  let smallestSize = Infinity;
+
+  targets.forEach(el => {
+    const size = fitText(el);
+    if (size < smallestSize) smallestSize = size;
+  });
+
+  targets.forEach(el => {
+    el.style.fontSize = smallestSize + 'px';
+  });
+}
+
+applyUnifiedFitText();
+window.addEventListener('resize', applyUnifiedFitText);
   </script>
 
 </body>
