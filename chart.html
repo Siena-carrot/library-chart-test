@@ -61,6 +61,8 @@
   box-sizing: border-box;
   text-align: center;
   position: relative;
+  flex-shrink: 0; 
+  overflow: hidden; 
 }
 
 
@@ -85,11 +87,14 @@
       text-align: center;
       margin-bottom: 20px;
       color: #555;
+      width: 100%;
+  height: auto;
       max-width: 100%;
   max-height: 100%;
   overflow: hidden;
   white-space: nowrap;
   display: block;
+   text-overflow: clip;
     }
 
     #resultText {
@@ -316,7 +321,7 @@
   el.style.fontSize = fontSize + 'px';
 
   while (
-    (el.scrollWidth > parent.clientWidth || el.scrollHeight > parent.clientHeight) &&
+    (el.scrollWidth > el.offsetWidth || el.scrollHeight > el.offsetHeight) &&
     fontSize > minSize
   ) {
     fontSize -= 1;
@@ -355,6 +360,10 @@ if (result) fitText(result, 20, 40);
     const encoded = encodeURIComponent(resultText);
     const resultEl = document.getElementById("resultText");
     resultEl.textContent = resultText;
+
+    fitText(resultEl, 20, 40);
+
+
     document.getElementById("detailButton").href = `result.html?result=${encoded}`;
     document.getElementById("questionBox").classList.add("hidden");
     document.getElementById("resultBox").classList.remove("hidden");
