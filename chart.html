@@ -316,6 +316,7 @@
   }
 
   function fitText(el, minSize = 14, maxSize = 60) {
+    if (!el || !el.offsetParent) return minSize;
     let fontSize = maxSize;
     el.style.fontSize = fontSize + 'px';
     el.style.whiteSpace = 'nowrap';
