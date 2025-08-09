@@ -217,7 +217,7 @@
 
   <!-- 質問表示ボックス -->
   <div class="box" id="questionBox">
-    <p id="questionText">ここに質問を入力</p>
+    <p id="questionText" class="fit-text">ここに質問を入力</p>
     <div class="button-group-A">
       <button class="yes-button common-button-A" onclick="choose('yes')">はい</button>
       <button class="no-button common-button-A" onclick="choose('no')">いいえ</button>
@@ -272,7 +272,9 @@
     if (currentNode.result) {
       showResult(currentNode.result);
     } else {
-      document.getElementById("questionText").textContent = currentNode.question;
+      const questionEl = document.getElementById("questionText");
+    questionEl.textContent = currentNode.question;
+    fitText(questionEl, 18, 30);
     }
   }
 
@@ -304,6 +306,9 @@
 
     const title = document.querySelector('.fit-title');
     if (title) fitText(title, 20, 40);
+
+    const question = document.getElementById('questionText');
+  if (question) fitText(question, 18, 30);
   }
 
   function showResult(resultText) {
