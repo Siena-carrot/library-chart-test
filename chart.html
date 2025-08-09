@@ -304,12 +304,12 @@
     }
   }
 
-  function fitText(el, minSize = 14, maxSize = 20) {
-    const availableWidth = el.offsetWidth;
-    let fontSize = maxSize;
-    el.style.fontSize = fontSize + 'px';
+  function fitText(el, minSize = 14, maxSize = 60) {
+  const parent = el.parentElement;
+  let fontSize = maxSize;
+  el.style.fontSize = fontSize + 'px';
 
-    while (
+  while (
     (el.scrollWidth > parent.clientWidth || el.scrollHeight > parent.clientHeight) &&
     fontSize > minSize
   ) {
@@ -317,11 +317,11 @@
     el.style.fontSize = fontSize + 'px';
   }
 
-
-    return fontSize;
-  }
+  return fontSize;
+}
 
   function applyUnifiedFitText() {
+    
     const buttons = document.querySelectorAll('.fit-button');
     let smallestSize = Infinity;
 
@@ -351,7 +351,7 @@
 
     setTimeout(() => {
       fitText(resultEl, 20, 40);
-    }, 0);
+    }, 50);
   }
 
   function restart() {
