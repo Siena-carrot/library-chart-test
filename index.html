@@ -61,31 +61,7 @@
 }
 
 
-    @media (max-width: 600px) {
-      .fit-text {
-        font-size: clamp(6px, 4vw, 10px);
-      }
-
-      .container {
-        padding: 20px;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
-
-      p {
-        font-size: 16px;
-      }
-
-
-      button {
-        font-size: 16px;
-        padding: 10px 20px;
-      }
-    }
+    
 
     .fit-text {
       white-space: normal;       /* ← 改行を許可 */
@@ -155,6 +131,32 @@
       white-space:nowrap;
     }
 
+    @media (max-width: 600px) {
+      .fit-text {
+        font-size: clamp(6px, 4vw, 10px);
+      }
+
+      .container {
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 120px;
+      }
+
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+
   </style>
 </head>
 
@@ -165,6 +167,7 @@
 
   <div id="main-content" style="display: none;">
   <div class="container">
+    <h1>図書館チャート</h1>
     <p class="fit-text text-center">
       <span>全国250以上の</span><span>図書館を</span><span>巡ったわたしが、</span>
       <span>あなたにぴったりの</span><span>図書館を教えてあげます。</span>
