@@ -315,13 +315,15 @@
   }
 
   function fitText(el, minSize = 14, maxSize = 60) {
-  const parent = el.parentElement;
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
+  const maxWidth = el.offsetParent.clientWidth;
+  const maxHeight = el.offsetParent.clientHeight;
+
   while (
-    (el.scrollWidth > parent.clientWidth || el.scrollHeight > parent.clientHeight) &&
+    (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
     fontSize > minSize
   ) {
     fontSize -= 1;
