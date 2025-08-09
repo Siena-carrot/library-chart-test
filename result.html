@@ -62,6 +62,16 @@
       word-break: break-word;
     }
 
+    .comment-line {
+  display: block;         /* ← 改行したい場合は block */
+  margin-bottom: 6px;
+  font-size: 18px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+/* もし横並びにしたい場合は display: inline に変更 */
+
     img {
       max-width: 40%;
       display: block;
@@ -203,13 +213,29 @@
 
   <script>
 
+    // コメントを <span> で分割して挿入
+function renderComment(commentHTML) {
+  const commentContainer = document.getElementById("comment");
+  commentContainer.innerHTML = ""; // いったん空にする
+
+  const lines = commentHTML.split(/<br\s*\/?>/i); // <br>で分割
+
+  lines.forEach(line => {
+    const span = document.createElement("span");
+    span.className = "comment-line";
+    span.innerHTML = line.trim();
+    commentContainer.appendChild(span);
+  });
+}
+
+
     const params = new URLSearchParams(window.location.search);
     const result = params.get("result");
     console.log("受け取った result パラメータ:", result);
 
     const libraryData = {
       "中央区立 晴海図書館": {
-    comment: "不思議な柄のじゅうたんによって、<br>建物内なのに外にいるような感覚になる図書館です。<br>半個室の閲覧席も魅力的です",
+    comment: "<span>不思議な柄のじゅうたんによって、</span><span>建物内なのに外にいるような感覚になる図書館です。</span><span>半個室の閲覧席も魅力的です</span>",
     image: "images/中央区立晴海図書館.jpg",
     map: "https://www.google.com/maps?q=中央区立+晴海図書館"
   },
@@ -251,7 +277,7 @@
 if (libraryData[result]) {
       const data = libraryData[result];
       document.getElementById("title").textContent = result;
-      document.getElementById("comment").innerHTML = data.comment;
+      renderComment(data.comment);
 
       if (data.image) {
         document.getElementById("image").src = data.image;
