@@ -52,21 +52,19 @@
       overflow: hidden;
     }
 
-    #resultBox {
-      width: 600px;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      text-align: center;
-      position: relative;
-    }
+    #resultText {
+  font-size: 60px;
+  text-align: center;
+  color: #555;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  display: inline-block;
+  width: 100%;
+}
+
 
     #questionText {
       font-size: 30px;
@@ -282,21 +280,13 @@
   }
 }
 
-function fitText(el, minSize = 14, maxSize = 60, container = null) {
-  if (!el || !el.offsetParent) return minSize;
-
-  const parent = container || el.offsetParent;
-  const maxWidth = parent.clientWidth;
-  const maxHeight = parent.clientHeight;
-
+function fitText(el, minSize = 14, maxSize = 40) {
+  const availableWidth = el.clientWidth;
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
-  while (
-    (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
-    fontSize > minSize
-  ) {
+  while (el.scrollWidth > availableWidth && fontSize > minSize) {
     fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
   }
@@ -304,23 +294,19 @@ function fitText(el, minSize = 14, maxSize = 60, container = null) {
   return fontSize;
 }
 
+
 function showResult(resultText) {
   const encoded = encodeURIComponent(resultText);
   const resultEl = document.getElementById("resultText");
   resultEl.textContent = resultText;
 
-  // 初回調整
-  fitText(resultEl, 20, 40, document.getElementById("resultBox"));
-
-  // 描画完了後に再調整（50ms後）
-  setTimeout(() => {
-    fitText(resultEl, 20, 40, document.getElementById("resultBox"));
-  }, 50);
+  fitText(resultEl, 20, 40);
 
   document.getElementById("detailButton").href = `result.html?result=${encoded}`;
   document.getElementById("questionBox").classList.add("hidden");
   document.getElementById("resultBox").classList.remove("hidden");
 }
+
 
 function restart() {
   currentNode = tree;
@@ -342,9 +328,10 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener('resize', () => {
   const resultEl = document.getElementById("resultText");
   if (resultEl && !document.getElementById("resultBox").classList.contains("hidden")) {
-    fitText(resultEl, 20, 40, document.getElementById("resultBox"));
+    fitText(resultEl, 20, 40);
   }
 });
+
 </script>
 </body>
 </html>
