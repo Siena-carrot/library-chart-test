@@ -302,6 +302,17 @@ function applyUnifiedFitText() {
   });
 }
 
+// タイトルだけ個別に調整（必要なら）
+const title = document.querySelector('.fit-title');
+if (title) fitText(title, 20, 40); // ← タイトルは大きめに保つ
+
+applyUnifiedFitText();
+window.addEventListener('resize', () => {
+  if (title) fitText(title, 20, 40);
+  applyUnifiedFitText();
+});
+
+
 // 初回実行
 applyUnifiedFitText();
 
