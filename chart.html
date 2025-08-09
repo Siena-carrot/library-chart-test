@@ -222,15 +222,6 @@
     </div>
   </div>
 
-  <div class="box hidden" id="resultBox">
-    <h2 id="resultText">ここに結果を入力</h2>
-    <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
-    <div class="button-group-B">
-      <button class="restart-button common-button-B" onclick="restart()">もういちどあそぶ</button>
-      <a href="index.html" class="top-button common-button-B">トップに戻る</a>
-    </div>
-  </div>
-
   <script>
     const tree = {
       question: "新しいものが好き",
@@ -319,12 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("resultBox").classList.add("hidden");
 });
 
-window.addEventListener('resize', () => {
-  const resultEl = document.getElementById("resultText");
-  if (resultEl && !document.getElementById("resultBox").classList.contains("hidden")) {
-    fitText(resultEl, 20, 40);
-  }
-});
 
 </script>
 </body>
