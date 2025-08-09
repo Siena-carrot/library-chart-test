@@ -176,51 +176,39 @@
    </div>
 
   <script>
-    window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-  const main = document.getElementById("main-content");
+  function fitText(el, minSize = 10, maxSize = 40) {
+    const parentWidth = el.parentElement.offsetWidth;
+    let fontSize = maxSize;
 
-  setTimeout(() => {
-    splash.style.display = "none";
-    main.style.display = "block";
-
-    // fitText をローディング後に実行
-    const target = document.querySelector('.fit-text');
-    if (target) fitText(target);
-  }, 1500);
-});
-
-window.addEventListener("resize", () => {
-  const target = document.querySelector('.fit-text');
-  if (target) fitText(target);
-});
-
-
-
-    function fitText(el, minSize = 10, maxSize = 40) {
-  const parentWidth = el.parentElement.offsetWidth;
-  let fontSize = maxSize;
-
-  el.style.fontSize = fontSize + 'px';
-
-  while (el.scrollWidth > parentWidth && fontSize > minSize) {
-    fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
+
+    while (el.scrollWidth > parentWidth && fontSize > minSize) {
+      fontSize -= 1;
+      el.style.fontSize = fontSize + 'px';
+    }
   }
-}
 
-// PCのみ実行（601px以上）
-if (window.innerWidth > 600) {
-  const target = document.querySelector('.fit-text');
-  fitText(target);
-  window.addEventListener('resize', () => fitText(target));
-}
+  window.addEventListener("load", () => {
+    const splash = document.getElementById("splash");
+    const main = document.getElementById("main-content");
 
+    setTimeout(() => {
+      splash.style.display = "none";
+      main.style.display = "block";
 
-// 実行
-const target = document.querySelector('.fit-text');
-fitText(target);
+      // ローディング後に fitText 実行（PCのみ）
+      if (window.innerWidth > 600) {
+        const target = document.querySelector('.fit-text');
+        if (target) fitText(target);
 
-  </script>
+        // リサイズ時にも再調整
+        window.addEventListener("resize", () => {
+          const target = document.querySelector('.fit-text');
+          if (target) fitText(target);
+        });
+      }
+    }, 1500);
+  });
+</script>
 </body>
 </html>
