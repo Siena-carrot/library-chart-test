@@ -273,40 +273,40 @@
     </div>
   </div>
 
-  <script>
-  const tree = {
-    question: "新しいものが好きaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+ <script>
+const tree = {
+  question: "新しいものが好きaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  yes: {
+    question: "他人の視線が気になるほうだ",
     yes: {
-      question: "他人の視線が気になるほうだ",
-      yes: {
-        question: "未知の世界に行きたい",
-        yes: { result: "中央区立 晴海図書館" },
-        no: { result: "荒川区立 尾久図書館" }
-      },
-      no: {
-        question: "ハイテクなものが好き",
-        yes: { result: "いわき市立 いわき総合図書館" },
-        no: { result: "那須塩原市立 中央図書館 みるる" }
-      }
+      question: "未知の世界に行きたい",
+      yes: { result: "中央区立 晴海図書館" },
+      no: { result: "荒川区立 尾久図書館" }
     },
     no: {
-      question: "ファンタジーが好き",
-      yes: {
-        question: "迷路が好き",
-        yes: { result: "目黒区立 目黒区民センター図書館" },
-        no: { result: "吹田市立 山田駅前図書館" }
-      },
-      no: {
-        question: "木とレンガなら木のほうが好き",
-        yes: { result: "佐久市立 浅科図書館" },
-        no: { result: "函館市中央図書館" }
-      }
+      question: "ハイテクなものが好き",
+      yes: { result: "いわき市立 いわき総合図書館" },
+      no: { result: "那須塩原市立 中央図書館 みるる" }
     }
-  };
+  },
+  no: {
+    question: "ファンタジーが好き",
+    yes: {
+      question: "迷路が好き",
+      yes: { result: "目黒区立 目黒区民センター図書館" },
+      no: { result: "吹田市立 山田駅前図書館" }
+    },
+    no: {
+      question: "木とレンガなら木のほうが好き",
+      yes: { result: "佐久市立 浅科図書館" },
+      no: { result: "函館市中央図書館" }
+    }
+  }
+};
 
-  let currentNode = tree;
+let currentNode = tree;
 
-  function choose(answer) {
+function choose(answer) {
   if (!currentNode || !currentNode[answer]) {
     console.warn("無効な分岐:", answer);
     return;
@@ -319,11 +319,13 @@
     showResult(currentNode.result);
   } else {
     questionEl.textContent = currentNode.question;
-    fitText(questionEl, 18, 30, document.getElementById("questionBox")); // ← ここ！
+    requestAnimationFrame(() => {
+      fitText(questionEl, 18, 30, document.getElementById("questionBox"));
+    });
   }
 }
 
-  function fitText(el, minSize = 14, maxSize = 60, container = null) {
+function fitText(el, minSize = 14, maxSize = 60, container = null) {
   if (!el || !el.offsetParent) return minSize;
 
   const parent = container || el.offsetParent;
@@ -334,8 +336,7 @@
   el.style.fontSize = fontSize + 'px';
   el.style.whiteSpace = 'nowrap';
 
-  // 強制的に再描画を待つ
-  el.offsetWidth; // ← reflow
+  el.offsetWidth; // reflow
 
   while (
     (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
@@ -343,78 +344,79 @@
   ) {
     fontSize -= 1;
     el.style.fontSize = fontSize + 'px';
-    el.offsetWidth; // ← reflow
+    el.offsetWidth; // reflow
   }
-   return fontSize;
+
+  return fontSize;
 }
 
+function applyUnifiedFitText() {
+  const buttons = document.querySelectorAll('.fit-button');
+  let smallestSize = Infinity;
 
+  buttons.forEach(el => {
+    const size = fitText(el);
+    if (size < smallestSize) smallestSize = size;
+  });
 
-  function applyUnifiedFitText() {
-    const buttons = document.querySelectorAll('.fit-button');
-    let smallestSize = Infinity;
+  buttons.forEach(el => {
+    el.style.fontSize = smallestSize + 'px';
+  });
 
-    buttons.forEach(el => {
-      const size = fitText(el);
-      if (size < smallestSize) smallestSize = size;
-    });
+  const title = document.querySelector('.fit-title');
+  if (title) fitText(title, 20, 40);
 
-    buttons.forEach(el => {
-      el.style.fontSize = smallestSize + 'px';
-    });
+  const question = document.getElementById('questionText');
+  if (question) fitText(question, 18, 30, document.getElementById("questionBox"));
 
-    const title = document.querySelector('.fit-title');
-    if (title) fitText(title, 20, 40);
+  const result = document.getElementById('resultText');
+  if (result) fitText(result, 20, 40, document.getElementById("resultBox"));
+}
 
-    const question = document.getElementById('questionText');
-    if (question) fitText(question, 18, 30);
+function showResult(resultText) {
+  const encoded = encodeURIComponent(resultText);
+  const resultEl = document.getElementById("resultText");
+  resultEl.textContent = resultText;
 
-    const result = document.getElementById('resultText');
-    if (result) fitText(result, 20, 40);
-  }
+  requestAnimationFrame(() => {
+    fitText(resultEl, 20, 40, document.getElementById("resultBox"));
+  });
 
-  function showResult(resultText) {
-    const encoded = encodeURIComponent(resultText);
-    const resultEl = document.getElementById("resultText");
-    resultEl.textContent = resultText;
+  document.getElementById("detailButton").href = `result.html?result=${encoded}`;
+  document.getElementById("questionBox").classList.add("hidden");
+  document.getElementById("resultBox").classList.remove("hidden");
+}
 
-    fitText(resultEl, 20, 40);
-
-    document.getElementById("detailButton").href = `result.html?result=${encoded}`;
-    document.getElementById("questionBox").classList.add("hidden");
-    document.getElementById("resultBox").classList.remove("hidden");
-
-    setTimeout(() => {
-      fitText(resultEl, 20, 40);
-    }, 50);
-  }
-
-  function restart() {
+function restart() {
   currentNode = tree;
   const questionEl = document.getElementById("questionText");
   questionEl.textContent = currentNode.question;
-  fitText(questionEl, 18, 30, document.getElementById("questionBox")); // ← ここ！
+
+  requestAnimationFrame(() => {
+    fitText(questionEl, 18, 30, document.getElementById("questionBox"));
+  });
 
   document.getElementById("questionBox").classList.remove("hidden");
   document.getElementById("resultBox").classList.add("hidden");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const questionEl = document.getElementById("questionText");
+  questionEl.textContent = tree.question;
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const questionEl = document.getElementById("questionText");
-    questionEl.textContent = tree.question;
+  requestAnimationFrame(() => {
     fitText(questionEl, 18, 30, document.getElementById("questionBox"));
-
-    document.getElementById("questionBox").classList.remove("hidden");
-    document.getElementById("resultBox").classList.add("hidden");
-
-    setTimeout(() => {
-      applyUnifiedFitText();
-    }, 50);
   });
 
-  window.addEventListener('resize', applyUnifiedFitText);
-</script>
+  document.getElementById("questionBox").classList.remove("hidden");
+  document.getElementById("resultBox").classList.add("hidden");
 
+  setTimeout(() => {
+    applyUnifiedFitText();
+  }, 50);
+});
+
+window.addEventListener('resize', applyUnifiedFitText);
+</script>
 </body>
 </html>
