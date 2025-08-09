@@ -329,7 +329,7 @@
 
     const parent = container || el.offsetParent;
     const maxWidth = parent.clientWidth;
-    const maxHeight = el.offsetParent.clientHeight;
+    const maxHeight = parent.clientHeight;
 
     while (
       (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
