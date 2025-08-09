@@ -364,9 +364,6 @@ if (result) fitText(result, 20, 40);
     resultEl.textContent = resultText;
 
     fitText(resultEl, 20, 40);
-  }
-
-
 
     document.getElementById("detailButton").href = `result.html?result=${encoded}`;
     document.getElementById("questionBox").classList.add("hidden");
@@ -375,7 +372,7 @@ if (result) fitText(result, 20, 40);
     setTimeout(() => {
       fitText(resultEl, 20, 40);
     }, 50);
-
+  }
 
   function restart() {
     currentNode = tree;
