@@ -305,36 +305,36 @@
 
   function choose(answer) {
     currentNode = currentNode[answer];
+    const questionEl = document.getElementById("questionText");
+
     if (currentNode.result) {
       showResult(currentNode.result);
     } else {
-      const questionEl = document.getElementById("questionText");
-    questionEl.textContent = currentNode.question;
-    fitText(questionEl, 18, 30);
+      questionEl.textContent = currentNode.question;
+      fitText(questionEl, 18, 30);
     }
   }
 
   function fitText(el, minSize = 14, maxSize = 60) {
-  let fontSize = maxSize;
-  el.style.fontSize = fontSize + 'px';
-  el.style.whiteSpace = 'nowrap';
-
-  const maxWidth = el.offsetParent.clientWidth;
-  const maxHeight = el.offsetParent.clientHeight;
-
-  while (
-    (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
-    fontSize > minSize
-  ) {
-    fontSize -= 1;
+    let fontSize = maxSize;
     el.style.fontSize = fontSize + 'px';
+    el.style.whiteSpace = 'nowrap';
+
+    const maxWidth = el.offsetParent.clientWidth;
+    const maxHeight = el.offsetParent.clientHeight;
+
+    while (
+      (el.scrollWidth > maxWidth || el.scrollHeight > maxHeight) &&
+      fontSize > minSize
+    ) {
+      fontSize -= 1;
+      el.style.fontSize = fontSize + 'px';
+    }
+
+    return fontSize;
   }
 
-  return fontSize;
-}
-
   function applyUnifiedFitText() {
-    
     const buttons = document.querySelectorAll('.fit-button');
     let smallestSize = Infinity;
 
@@ -351,11 +351,10 @@
     if (title) fitText(title, 20, 40);
 
     const question = document.getElementById('questionText');
-  if (question) fitText(question, 18, 30);
+    if (question) fitText(question, 18, 30);
 
-  const result = document.getElementById('resultText');
-if (result) fitText(result, 20, 40);
-
+    const result = document.getElementById('resultText');
+    if (result) fitText(result, 20, 40);
   }
 
   function showResult(resultText) {
@@ -376,22 +375,25 @@ if (result) fitText(result, 20, 40);
 
   function restart() {
     currentNode = tree;
-    document.getElementById("questionText").textContent = currentNode.question;
+    const questionEl = document.getElementById("questionText");
+    questionEl.textContent = currentNode.question;
+    fitText(questionEl, 18, 30);
+
     document.getElementById("questionBox").classList.remove("hidden");
     document.getElementById("resultBox").classList.add("hidden");
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     const questionEl = document.getElementById("questionText");
-  questionEl.textContent = tree.question;
-  fitText(questionEl, 18, 30);
-    document.getElementById("questionText").textContent = tree.question;
+    questionEl.textContent = tree.question;
+    fitText(questionEl, 18, 30);
+
     document.getElementById("questionBox").classList.remove("hidden");
     document.getElementById("resultBox").classList.add("hidden");
-    setTimeout(() => {
-    applyUnifiedFitText();
-  }, 50);
 
+    setTimeout(() => {
+      applyUnifiedFitText();
+    }, 50);
   });
 
   window.addEventListener('resize', applyUnifiedFitText);
