@@ -189,15 +189,15 @@
 </head>
 <body>
     <div class="container">
-    <h1 id="title" class="fit-text">図書館名</h1>
+    <h1 id="title" class="fit-title">図書館名</h1>
     <p id="comment">図書館の紹介文がここに表示されます。</p>
     <img id="image" src="" alt="図書館の写真">
     <br>
     <a id="map" class="map-link" target="_blank">地図を見る</a>
     <br>
     <div class="button-group">
-  <a href="chart.html" class="nav-button common-button fit-text">もういちどあそぶ</a>
-  <a href="index.html" class="nav-button common-button fit-text">トップに戻る</a>
+  <a href="chart.html" class="nav-button common-button fit-button">もういちどあそぶ</a>
+  <a href="index.html" class="nav-button common-button fit-button">トップに戻る</a>
 </div>
   </div>
 
@@ -287,9 +287,9 @@ if (libraryData[result]) {
   return fontSize;
 }
 
-// すべての .fit-text 要素に適用し、最小サイズを記録
+// .fit-button 要素に最小サイズを統一して適用
 function applyUnifiedFitText() {
-  const targets = document.querySelectorAll('.fit-text');
+  const targets = document.querySelectorAll('.fit-button');
   let smallestSize = Infinity;
 
   targets.forEach(el => {
@@ -297,7 +297,6 @@ function applyUnifiedFitText() {
     if (size < smallestSize) smallestSize = size;
   });
 
-  // 最小サイズで統一
   targets.forEach(el => {
     el.style.fontSize = smallestSize + 'px';
   });
@@ -307,7 +306,7 @@ function applyUnifiedFitText() {
 applyUnifiedFitText();
 
 // リサイズ時にも再適用
-window.addEventListener('resize', applyUnifiedFitText)
+window.addEventListener('resize', applyUnifiedFitText);
 
 </script>
 </body>
