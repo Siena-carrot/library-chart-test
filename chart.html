@@ -217,7 +217,7 @@
 
   <!-- 結果表示ボックス -->
   <div class="box hidden" id="resultBox">
-    <h2 id="resultText" class="fit-title">ここに結果を入力</h2>
+    <h2 id="resultText" class="fit-title fit-text">ここに結果を入力</h2>
     <a href="#" class="detail-button common-button-B" id="detailButton">詳細はこちら</a>
     <div class="button-group-B">
       <button class="restart-button common-button-B fit-button" onclick="restart()">もういちどあそぶ</button>
@@ -312,16 +312,19 @@ window.addEventListener('resize', () => {
 
     // 結果表示とリンク設定
     function showResult(resultText) {
-      const encoded = encodeURIComponent(resultText);
-      document.getElementById("resultText").textContent = resultText;
-      document.getElementById("detailButton").href = `result.html?result=${encoded}`;
-      document.getElementById("questionBox").classList.add("hidden");
-      document.getElementById("resultBox").classList.remove("hidden");
+  const encoded = encodeURIComponent(resultText);
+  const resultEl = document.getElementById("resultText");
+  resultEl.textContent = resultText;
+  document.getElementById("detailButton").href = `result.html?result=${encoded}`;
+  document.getElementById("questionBox").classList.add("hidden");
+  document.getElementById("resultBox").classList.remove("hidden");
 
-      const title = document.querySelector('.fit-title');
-  if (title) fitText(title, 20, 40);
+  // 描画後にフォントサイズ調整を確実に行う
+  setTimeout(() => {
+    fitText(resultEl, 20, 40);
+  }, 0);
+}
 
-    }
 
     // 最初からやり直す
     function restart() {
