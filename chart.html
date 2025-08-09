@@ -297,15 +297,9 @@ function fitText(el, minSize = 14, maxSize = 40) {
 
 function showResult(resultText) {
   const encoded = encodeURIComponent(resultText);
-  const resultEl = document.getElementById("resultText");
-  resultEl.textContent = resultText;
-
-  fitText(resultEl, 20, 40);
-
-  document.getElementById("detailButton").href = `result.html?result=${encoded}`;
-  document.getElementById("questionBox").classList.add("hidden");
-  document.getElementById("resultBox").classList.remove("hidden");
+  location.href = `result.html?result=${encoded}`;
 }
+
 
 
 function restart() {
