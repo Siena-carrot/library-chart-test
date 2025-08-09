@@ -92,6 +92,7 @@
       max-width: 100%;
       max-height: 100%;
       overflow: hidden;
+      text-overflow: clip;
       display: block;
     }
 
@@ -308,9 +309,13 @@ function showResult(resultText) {
   const resultEl = document.getElementById("resultText");
   resultEl.textContent = resultText;
 
-  requestAnimationFrame(() => {
+  // 初回調整
+  fitText(resultEl, 20, 40, document.getElementById("resultBox"));
+
+  // 描画完了後に再調整（50ms後）
+  setTimeout(() => {
     fitText(resultEl, 20, 40, document.getElementById("resultBox"));
-  });
+  }, 50);
 
   document.getElementById("detailButton").href = `result.html?result=${encoded}`;
   document.getElementById("questionBox").classList.add("hidden");
