@@ -304,23 +304,30 @@
   let currentNode = tree;
 
   function choose(answer) {
-    currentNode = currentNode[answer];
-    const questionEl = document.getElementById("questionText");
-
-    if (currentNode.result) {
-      showResult(currentNode.result);
-    } else {
-      questionEl.textContent = currentNode.question;
-      fitText(questionEl, 18, 30);
-    }
+  if (!currentNode || !currentNode[answer]) {
+    console.warn("無効な分岐:", answer);
+    return;
   }
 
-  function fitText(el, minSize = 14, maxSize = 60) {
+  currentNode = currentNode[answer];
+  const questionEl = document.getElementById("questionText");
+
+  if (currentNode.result) {
+    showResult(currentNode.result);
+  } else {
+    questionEl.textContent = currentNode.question;
+    fitText(questionEl, 18, 30, document.getElementById("questionBox")); // ← ここ！
+  }
+}
+
+  function fitText(el, minSize = 14, maxSize = 60, container = null) {
     if (!el || !el.offsetParent) return minSize;
+
     let fontSize = maxSize;
     el.style.fontSize = fontSize + 'px';
     el.style.whiteSpace = 'nowrap';
 
+    const parent = container || el.offsetParent;
     const maxWidth = el.offsetParent.clientWidth;
     const maxHeight = el.offsetParent.clientHeight;
 
@@ -375,19 +382,20 @@
   }
 
   function restart() {
-    currentNode = tree;
-    const questionEl = document.getElementById("questionText");
-    questionEl.textContent = currentNode.question;
-    fitText(questionEl, 18, 30);
+  currentNode = tree;
+  const questionEl = document.getElementById("questionText");
+  questionEl.textContent = currentNode.question;
+  fitText(questionEl, 18, 30, document.getElementById("questionBox")); // ← ここ！
 
-    document.getElementById("questionBox").classList.remove("hidden");
-    document.getElementById("resultBox").classList.add("hidden");
-  }
+  document.getElementById("questionBox").classList.remove("hidden");
+  document.getElementById("resultBox").classList.add("hidden");
+}
+
 
   document.addEventListener("DOMContentLoaded", () => {
     const questionEl = document.getElementById("questionText");
     questionEl.textContent = tree.question;
-    fitText(questionEl, 18, 30);
+    fitText(questionEl, 18, 30, document.getElementById("questionBox"));
 
     document.getElementById("questionBox").classList.remove("hidden");
     document.getElementById("resultBox").classList.add("hidden");
