@@ -93,7 +93,7 @@
   max-height: 100%;
   overflow: hidden;
   white-space: nowrap;
-  display: block;
+  display: inline-block;
    text-overflow: clip;
     }
 
@@ -319,9 +319,10 @@
   const parent = el.parentElement;
   let fontSize = maxSize;
   el.style.fontSize = fontSize + 'px';
+  el.style.whiteSpace = 'nowrap';
 
   while (
-    (el.scrollWidth > el.offsetWidth || el.scrollHeight > el.offsetHeight) &&
+    (el.scrollWidth > parent.clientWidth || el.scrollHeight > parent.clientHeight) &&
     fontSize > minSize
   ) {
     fontSize -= 1;
